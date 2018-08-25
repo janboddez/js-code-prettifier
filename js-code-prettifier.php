@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) or exit;
  */
 class JS_Code_Prettifier {
 	/**
-	 * Registers the necessary hooks, or an admin notice in case environment requirements aren't met.
+	 * Registers the necessary hooks.
 	 *
 	 * @since 0.1
 	 */
