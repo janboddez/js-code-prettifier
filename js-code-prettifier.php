@@ -30,7 +30,7 @@ class JS_Code_Prettifier {
 	}
 
 	/**
-	 * On single pages and posts, loads Google's JS Code Prettifier script.
+	 * On single posts and pages, loads Google's JS Code Prettifier script.
 	 *
 	 * @since 0.1
 	 */
