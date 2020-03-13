@@ -1,31 +1,58 @@
 <?php
 /**
- * Plugin Name: JS Code Prettifier for WordPress
- * Description: More efficiently highlight code snippets on your WordPress blog.
+ * Plugin Name:       JS Code Prettifier for WordPress
+ * Description:       Highlight code snippets on your WordPress blog.
  * GitHub Plugin URI: https://github.com/janboddez/js-code-prettifier
- * Author: Jan Boddez
- * Author URI: https://janboddez.be/
- * License: GNU General Public License v2 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- * Version: 0.1.1
+ * Author:            Jan Boddez
+ * Author URI:        https://janboddez.tech/
+ * License:           GNU General Public License v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
+ * Version:           0.2
  *
- * @author Jan Boddez [jan@janboddez.be]
+ * @author  Jan Boddez <jan@janboddez.be>
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License v2.0
+ * @package JS_Code_Prettyfier
  */
 
-/* Prevents this script from being loaded directly. */
-defined( 'ABSPATH' ) or exit;
+// Prevent this script from being loaded directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Main plugin class.
  */
 class JS_Code_Prettifier {
 	/**
+	 * This plugin's single instance.
+	 *
+	 * @var Fediverse_Icons_Jetpack $instance Plugin instance.
+	 *
+	 * @since 0.2
+	 */
+	private static $instance;
+
+	/**
+	 * Returns the single instance of this class.
+	 *
+	 * @return Fediverse_Icons_Jetpack Single class instance.
+	 *
+	 * @since 0.2
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Registers the necessary hooks.
 	 *
 	 * @since 0.1
 	 */
-	public function __construct() {
+	private function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
 	}
 
@@ -35,12 +62,12 @@ class JS_Code_Prettifier {
 	 * @since 0.1
 	 */
 	public function load_scripts() {
-		/* Load only for single posts and pages (and stop it from affecting tag archives). */
+		// Load only for single posts and pages (and prevent the script from affecting tag archives).
 		if ( is_singular() ) {
 			wp_enqueue_script( 'js-code-prettifier', plugin_dir_url( __FILE__ ) . 'assets/js/js-code-prettifier.js', array( 'jquery' ), false, true );
-			wp_enqueue_script( 'code-prettify', 'https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js', array(), false, true );
+			wp_enqueue_script( 'code-prettify', 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js', array(), false, true );
 		}
 	}
 }
 
-new JS_Code_Prettifier();
+JS_Code_Prettifier::get_instance();
