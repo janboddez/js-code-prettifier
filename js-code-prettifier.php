@@ -26,7 +26,7 @@ class JS_Code_Prettifier {
 	/**
 	 * This plugin's single instance.
 	 *
-	 * @var Fediverse_Icons_Jetpack $instance Plugin instance.
+	 * @var JS_Code_Prettifier $instance Plugin instance.
 	 *
 	 * @since 0.2
 	 */
@@ -35,7 +35,7 @@ class JS_Code_Prettifier {
 	/**
 	 * Returns the single instance of this class.
 	 *
-	 * @return Fediverse_Icons_Jetpack Single class instance.
+	 * @return JS_Code_Prettifier Single class instance.
 	 *
 	 * @since 0.2
 	 */
